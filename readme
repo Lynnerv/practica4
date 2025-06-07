@@ -1,0 +1,2 @@
+agregar 
+dotnet add package Microsoft.ML
