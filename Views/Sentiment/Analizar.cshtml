@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Análisis de Sentimiento";
+}
+
+<h2>Análisis de Sentimiento</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="texto">Escribe tu opinión:</label>
+        <textarea name="texto" class="form-control" rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Analizar</button>
+</form>
+
+@if (ViewBag.Resultado != null)
+{
+    <div class="alert alert-info mt-4">
+        <strong>Texto:</strong> @ViewBag.Texto <br />
+        <strong>Sentimiento:</strong> @ViewBag.Resultado <br />
+        <strong>Score:</strong> @ViewBag.Score
+    </div>
+}
