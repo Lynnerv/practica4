@@ -2,21 +2,36 @@
     ViewData["Title"] = "Análisis de Sentimiento";
 }
 
-<h2>Análisis de Sentimiento</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label for="texto">Escribe tu opinión:</label>
-        <textarea name="texto" class="form-control" rows="3" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary mt-2">Analizar</button>
-</form>
+            <form method="post" class="card shadow-sm p-4">
+                <div class="mb-3">
+                    <label for="texto" class="form-label">Escribe tu opinión:</label>
+                    <textarea id="texto" name="texto" class="form-control" rows="4" placeholder="Escribe aquí tu opinión..." required></textarea>
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Analizar</button>
+                </div>
+            </form>
 
-@if (ViewBag.Resultado != null)
-{
-    <div class="alert alert-info mt-4">
-        <strong>Texto:</strong> @ViewBag.Texto <br />
-        <strong>Sentimiento:</strong> @ViewBag.Resultado <br />
-        <strong>Score:</strong> @ViewBag.Score
+            @if (ViewBag.Resultado != null)
+            {
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-3">Resultado del Análisis</h4>
+                        <p><strong>Texto:</strong> @ViewBag.Texto</p>
+                        <p><strong>Sentimiento:</strong> 
+                            <span class="badge @(ViewBag.Resultado == "Positivo" ? "bg-success" : "bg-danger")">
+                                @ViewBag.Resultado
+                            </span>
+                        </p>
+                        <p><strong>Score de Predicción:</strong> @ViewBag.Score</p>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-}
+</div>

@@ -2,28 +2,40 @@
     ViewData["Title"] = "Recomendación de Productos";
 }
 
-<h2>Recomendación de Productos</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label for="userId">Ingrese su ID de Usuario (por ejemplo: U1):</label>
-        <input type="text" name="userId" class="form-control" required />
-    </div>
-    <button type="submit" class="btn btn-primary mt-2">Obtener Recomendaciones</button>
-</form>
+            <form method="post" class="card shadow-sm p-4">
+                <div class="mb-3">
+                    <label for="userId" class="form-label">Ingrese su ID de Usuario (ejemplo: U1):</label>
+                    <input type="text" id="userId" name="userId" class="form-control" placeholder="U1" required />
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Obtener Recomendaciones</button>
+                </div>
+            </form>
 
-@if (ViewBag.Recomendaciones != null)
-{
-    <div class="mt-4">
-        <h4>Recomendaciones para @ViewBag.UserId</h4>
-        <ul class="list-group">
-            @foreach (var item in ViewBag.Recomendaciones)
+            @if (ViewBag.Recomendaciones != null)
             {
-                <li class="list-group-item">
-                    <strong>Producto:</strong> @item.Item1 <br />
-                    <strong>Score:</strong> @item.Item2.ToString("0.00")
-                </li>
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title text-center mb-3">Recomendaciones para 
+                            <span class="text-primary fw-bold">@ViewBag.UserId</span>
+                        </h4>
+                        <ul class="list-group list-group-flush">
+                            @foreach (var item in ViewBag.Recomendaciones)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><strong>Producto:</strong> @item.Item1</span>
+                                    <span class="badge bg-primary">@item.Item2.ToString("0.00")</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
             }
-        </ul>
+        </div>
     </div>
-}
+</div>
